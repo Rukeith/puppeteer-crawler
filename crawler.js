@@ -1,7 +1,8 @@
+const _ = require('lodash');
 const cheerio = require('cheerio');
 const puppeteer = require('puppeteer');
 
-const keyword = '米森 蔓越莓麥片';
+let keyword = '米森 蔓越莓麥片';
 const sourceList = [
   {
     name: 'momo',
@@ -48,9 +49,9 @@ const sourceList = [
 ];
 
 const crawler = ($, params = {}, type) => {
-  console.log('------------ parse start ------------');
+  // console.info('------------ parse start ------------');
   const itemCount = ($(params.count).length > 10) ? 10 : $(params.count).length;
-  console.log('------------ parse count ------------', itemCount);
+  // console.info('------------ parse count ------------', itemCount);
 
   const parseData = [];
   for (let index = 0; index < itemCount; index++) {
@@ -72,10 +73,17 @@ const crawler = ($, params = {}, type) => {
 
 module.exports = api => {
   api.get('/', async ctx => {
-    console.log('------------ Program start ------------');
+    const argv =  process.argv.slice(2);
+    if (!_.isEmpty(argv)) {
+      keyword = _.reduce(argv, (sum, val) => {
+        return sum + val;
+      }, '');
+    }
+
+    // console.info('------------ Program start ------------', keyword);
     const browser = await puppeteer.launch();
   
-    console.log('------------ start crawler ------------');
+    // console.info('------------ start crawler ------------');
     const data = await Promise.all(sourceList.map(source => {
       return new Promise(async (resolve, reject) => {
         try {
@@ -86,7 +94,7 @@ module.exports = api => {
           } else if (source.params.type === 'param') {
             url = url.replace(source.params.name, keyword);
           }
-          console.log('------------ url ------------', url);
+          // console.info('------------ url ------------', url);
           await page.goto(url);
           const content = await page.content();
           const $ = cheerio.load(content);
@@ -102,6 +110,6 @@ module.exports = api => {
   
     await browser.close();
     ctx.render('index', { keyword, data, title: 'Crawler' });
-    console.log('------------ Program end ------------');
+    // console.error('------------ Program end ------------');
   });
 };
