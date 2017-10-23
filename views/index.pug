@@ -1,0 +1,16 @@
+extends layout
+
+block content
+    h2.title 關鍵字：#{keyword}
+    each val, index in data
+        .section
+            .row.headline
+                h3 Crawler website is #{val.website}
+            .row.items
+                each subVal, subIndex in val.data
+                    .col-md-6.col-sm-12.col-12.item
+                        .media
+                            img.align-self-start.mr-3.img-thumbnail(alt=subVal.title src=subVal.img)
+                            .media-body
+                                h5.mt-0= subVal.title
+                                p 價格是 : #{subVal.price}

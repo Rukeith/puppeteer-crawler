@@ -1,0 +1,23 @@
+.title {
+    background-color: #5bc9f1;
+    padding: 15px;
+}
+
+.headline {
+    background-color: #f2bd5c;
+    padding: 12px;
+    margin-bottom: 15px;
+}
+
+.item {
+    margin-bottom: 15px;
+}
+
+.item .media img {
+    height: 150px;
+    min-height: 80px;
+}
+
+.item .media .media-body {
+    height: auto;
+}

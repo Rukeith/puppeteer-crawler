@@ -1,12 +1,30 @@
 {
-  "name": "phantomjs-crawler",
+  "name": "puppeteer-crawler",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "dev": "nodemon --ext '.js|.pug' -w . app.js"
+  },
+  "engines": {
+    "node": ">=8.7.0"
+  },
   "repository": "git@github.com:Rukeith/phantomjs-crawler.git",
   "author": "Rukeith <fenglan.crazydance@gmail.com>",
   "license": "MIT",
   "dependencies": {
     "cheerio": "^1.0.0-rc.2",
-    "phantom": "^4.0.5"
+    "kcors": "^2.2.1",
+    "koa": "^2.3.0",
+    "koa-body": "^2.5.0",
+    "koa-logger": "^3.1.0",
+    "koa-pug": "^3.0.0-2",
+    "koa-router": "^7.2.1",
+    "koa-static": "^4.0.1",
+    "koa-views": "^6.1.1",
+    "puppeteer": "^0.12.0"
+  },
+  "devDependencies": {
+    "nodemon": "^1.12.1"
   }
 }
