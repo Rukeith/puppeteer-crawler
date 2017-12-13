@@ -1,4 +1,6 @@
 # puppeteer-crawler
+
+[![Greenkeeper badge](https://badges.greenkeeper.io/Rukeith/puppeteer-crawler.svg)](https://greenkeeper.io/)
 A crawler with puppeteer which is headless chrome Node API
 
 # Required
